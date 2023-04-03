@@ -17,17 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('status')->nullable();
-            $table->integer('quantity')->nullable();
-            $table->float('price')->nullable();
-            $table->float('total_price')->nullable();
-            $table->foreignId('user_id')
-                ->nullable()
-                ->constrained()
-                ->cascadeOnDelete();
-            $table->foreignId('product_id')
-                ->nullable()
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->unsignedBigInteger('quantity')->nullable();
+            $table->unsignedBigInteger('price')->nullable();
+            $table->unsignedBigInteger('total_price')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id');
             $table->timestamps();
         });
     }

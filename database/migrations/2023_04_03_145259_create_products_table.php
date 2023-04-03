@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->integer('quantity');
-            $table->float('price');
-            $table->float('total_price');
+            $table->unsignedBigInteger('price');
+            $table->unsignedBigInteger('total_price');
             $table->timestamps();
         });
     }
