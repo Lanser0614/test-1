@@ -11,7 +11,8 @@ use App\Models\ProductHistory;
 class UpdateProductHistoryAction
 {
 
-    public  function run(Product $product , CreateProductDTO $dto) {
+    public  function run(Product $product , CreateProductDTO $dto): void
+    {
 
         $productHis = new ProductHistory();
         $productHis->status = "update";

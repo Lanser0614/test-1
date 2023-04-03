@@ -9,14 +9,20 @@ use App\DTO\Product\CreateProductDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -27,9 +33,10 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
+     * @throws AuthorizationException
      */
-    public function create()
+    public function create(): View|Factory|Application
     {
         $this->authorize('create',Product::class);
         return view('site.product.create');
@@ -39,10 +46,12 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProductRequest $request
+     * @param CreateProductAction $action
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
-    public function store(ProductRequest $request, CreateProductAction $action)
+    public function store(ProductRequest $request, CreateProductAction $action): RedirectResponse
     {
 
         $this->authorize('create',Product::class);
@@ -62,7 +71,7 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -72,10 +81,11 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return Application|Factory|View
+     * @throws AuthorizationException
      */
-    public function edit(Product $product)
+    public function edit(Product $product): View|Factory|Application
     {
         $this->authorize('create',Product::class);
         return view('site.product.edit',compact('product'));
@@ -84,9 +94,9 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function update(ProductRequest $request, UpdateProductAction $action ,Product $product ,UpdateProductHistoryAction $ac)
     {
@@ -110,7 +120,7 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(Product $product)
     {

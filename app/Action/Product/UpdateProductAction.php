@@ -10,7 +10,8 @@ use App\Models\Product;
 class UpdateProductAction
 {
 
-    public  function run(Product $product , CreateProductDTO $dto) {
+    public function run(Product $product, CreateProductDTO $dto): void
+    {
 
         $product->title = $dto->getTitle();
         $product->quantity = $dto->getQuantity();
