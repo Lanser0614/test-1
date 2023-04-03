@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * class Product
+ * @property int $id
  * @property string $title
  * @property int $quantity
  * @property float $price

@@ -94,11 +94,14 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param  int  $id
+     * @param ProductRequest $request
+     * @param UpdateProductAction $action
+     * @param Product $product
+     * @param UpdateProductHistoryAction $ac
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
-    public function update(ProductRequest $request, UpdateProductAction $action ,Product $product ,UpdateProductHistoryAction $ac)
+    public function update(ProductRequest $request, UpdateProductAction $action ,Product $product ,UpdateProductHistoryAction $ac): RedirectResponse
     {
         $this->authorize('create',Product::class);
         $dto = new CreateProductDTO(

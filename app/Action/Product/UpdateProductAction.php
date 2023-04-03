@@ -12,7 +12,6 @@ class UpdateProductAction
 
     public function run(Product $product, CreateProductDTO $dto): void
     {
-
         $product->title = $dto->getTitle();
         $product->quantity = $dto->getQuantity();
         $product->price = $dto->getPrice();
