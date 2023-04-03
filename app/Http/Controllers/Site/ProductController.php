@@ -22,9 +22,9 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function index()
+    public function index(): View|Factory|Application
     {
         $products = Product::paginate(10);
         return view('site.product.index', compact('products'));

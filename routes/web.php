@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Test\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,19 +18,19 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::get('login', [\App\Http\Controllers\Auth\LoginController::class,'index']);
-Route::post('login', [\App\Http\Controllers\Auth\LoginController::class,'login'])->name('login');
-Route::post('logout', [\App\Http\Controllers\Auth\LogoutController::class,'logout']);
+Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'index']);
+Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
+Route::post('logout', [\App\Http\Controllers\Auth\LogoutController::class, 'logout']);
 
 
 Route::middleware('auth')->group(function () {
-
     Route::get('/', function () {
         return view('home');
     });
     Route::resources([
-        'products'=>\App\Http\Controllers\Site\ProductController::class,
+        'products' => \App\Http\Controllers\Site\ProductController::class,
     ]);
-
-
 });
+
+
+
