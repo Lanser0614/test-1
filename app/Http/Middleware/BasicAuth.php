@@ -3,11 +3,9 @@
 namespace App\Http\Middleware;
 
 use App\Exceptions\UnAuthException;
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Validation\UnauthorizedException;
 
 class BasicAuth
 {
